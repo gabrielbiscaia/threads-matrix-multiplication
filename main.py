@@ -28,7 +28,7 @@ def compilar_e_rodar(arquivo_c, algoritmo, tamanho, qtdExecucoes):
             mediaTempoExecucao += float(retorno)
             
     mediaTempoExecucao /= qtdExecucoes
-    print("Media do tempo de execução: "+mediaTempoExecucao+"s")
+    print("Media do tempo de execução: ",mediaTempoExecucao,"s")
 
 #arquivo C
 arquivo = 'principal.c'
