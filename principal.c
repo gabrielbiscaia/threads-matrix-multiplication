@@ -29,7 +29,7 @@ double tempoFinal;
 pthread_mutex_t mutex;
 
 int main(int argc, char* argv[]){
-    qtdThreads=THREADS_PEDRO;
+    qtdThreads=THREADS_GABRIEL;
     tempoFinal=0.0;
     if(argc==3){
         if (strcmp(argv[2], "TAM_1") == 0) {
@@ -41,8 +41,7 @@ int main(int argc, char* argv[]){
         } else {
             tamanho = 0;
         }
-
-        printf("TAMANHO = %d", tamanho);
+        
         //Inicia a semente do gerador de numeros aleatórios com o tempo atual.
         srand(time(0));
 
@@ -52,10 +51,12 @@ int main(int argc, char* argv[]){
         povoarMatriz(matriz2);
         matrizResultante = geraMatriz();
 
+        printf("=============================================");
+        printf("\nTamanho da matriz = %d", tamanho);
 
         if(strcmp(argv[1], "-s")== 0){
-            //Sequencial
 
+            printf("\nModo = Sequencial");
             //Marca o tempo inicial
             inicio = time(NULL);
 
@@ -65,8 +66,8 @@ int main(int argc, char* argv[]){
             fim = time(NULL);  
         }
         else if(strcmp(argv[1], "-p")== 0){
-            //Paralelo
 
+            printf("\nModo = Paralelo");
             //Marca o tempo inicial
             inicio = time(NULL);
 
@@ -94,10 +95,12 @@ int main(int argc, char* argv[]){
         // Calcula o tempo de CPU utilizado em segundos
  
         liberarMemoria();
-       tempoFinal = fim-inicio;
-        printf("\nO tempo de execução do programa foi de: %.2fs\n", tempoFinal);
+        tempoFinal = fim-inicio;
+        printf("\nO tempo de execução do programa foi de: %.2fs", tempoFinal);
+        printf("\n=============================================\n");
+
     }
 
     return 0;
-    
+
 }
