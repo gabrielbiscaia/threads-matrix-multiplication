@@ -38,18 +38,6 @@ def compilar_e_rodar(arquivo_c, algoritmo, tamanho, qtdExecucoes, qtdThreads):
 
     return mediaTempoExecucao
 
-    # # Dados para o eixo x e y
-    # x = [1, 2, 3, 4, 5]
-    # y = [2, 4, 6, 8, 10]
-
-    # # Plotando o gráfico
-    # plt.plot(x, y, 'ro')  # 'ro' representa pontos vermelhos (red circles)
-    # plt.xlabel('Eixo X')
-    # plt.ylabel('Eixo Y')
-    # plt.title('Gráfico de exemplo')
-    # plt.show()
-
-
 # arquivo C
 arquivo = 'principal.c'
 
@@ -62,7 +50,6 @@ if choice == "1":
     tempoParalelo1000=[]
     tempoSequencial1000 = compilar_e_rodar(arquivo, "1", "TAM_1", 1, "1")
     
-    tempoParalelo1000.append(compilar_e_rodar(arquivo, "2", "TAM_1", 1, "1"))
     tempoParalelo1000.append(compilar_e_rodar(arquivo, "2", "TAM_1", 1, "2"))
     tempoParalelo1000.append(compilar_e_rodar(arquivo, "2", "TAM_1", 1, "4"))
     tempoParalelo1000.append(compilar_e_rodar(arquivo, "2", "TAM_1", 1, "8"))
@@ -76,7 +63,6 @@ if choice == "1":
 
     tempoSequencial2000 = compilar_e_rodar(arquivo, "1", "TAM_2", 1, "1")
     
-    tempoParalelo2000.append(compilar_e_rodar(arquivo, "2", "TAM_2", 1, "1"))
     tempoParalelo2000.append(compilar_e_rodar(arquivo, "2", "TAM_2", 1, "2"))
     tempoParalelo2000.append(compilar_e_rodar(arquivo, "2", "TAM_2", 1, "4"))
     tempoParalelo2000.append(compilar_e_rodar(arquivo, "2", "TAM_2", 1, "8"))
@@ -87,9 +73,8 @@ if choice == "1":
 
     tempoParalelo4000=[]
 
-    tempoSequencial4000 = compilar_e_rodar(arquivo, "1", "TAM_1", 1, "1")
+    tempoSequencial4000 = compilar_e_rodar(arquivo, "1", "TAM_3", 1, "1")
     
-    tempoParalelo4000.append(compilar_e_rodar(arquivo, "2", "TAM_3", 1, "1"))
     tempoParalelo4000.append(compilar_e_rodar(arquivo, "2", "TAM_3", 1, "2"))
     tempoParalelo4000.append(compilar_e_rodar(arquivo, "2", "TAM_3", 1, "4"))
     tempoParalelo4000.append(compilar_e_rodar(arquivo, "2", "TAM_3", 1, "8"))
@@ -147,11 +132,6 @@ if choice == "1":
     ax3.set_title("Matrix: 4000x4000")
     fig.tight_layout()
 
-
-    # plt.xticks([i+1 for i in range(12)])
-    # plt.yticks([i+1 for i in range(12)])
-
-    # plt.legend()
     plt.show()
 
 elif choice == "2":
