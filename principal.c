@@ -1,25 +1,26 @@
+//importação das bilbiotecas necessárias
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
 #include <string.h>
+//importação dos outros arquivos
 #include "util.c"
 #include "sequencial.c"
 #include "paralelo.c"
-
+//Quantidade de threads de cada aluno
+#define THREADS_ARTHUR 4
 #define THREADS_GABRIEL 8
 #define THREADS_PEDRO 4
-#define THREADS_ARTHUR 4
-
-#define TAM_1 2000
-#define TAM_2 4000
-#define TAM_3 8000
-
+//Tamanho das matrizes
+#define TAM_1 1000
+#define TAM_2 2000
+#define TAM_3 4000
+//Declaração Matrizes
 float ** matriz1;
 float ** matriz2;
 float ** matrizResultante;
 int tamanho;
 int qtdThreads;
-
 //variaveis para calcular tempo
 clock_t inicio, fim;
 double tempoFinal;
