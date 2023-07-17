@@ -29,8 +29,12 @@ double tempoFinal;
 pthread_mutex_t mutex;
 
 double main(int argc, char* argv[]){
+<<<<<<< HEAD
     
     
+=======
+    qtdThreads=THREADS_GABRIEL;
+>>>>>>> 005f07cd049a1774826413f762f57554a38d75d7
     tempoFinal=0.0;
     if(argc==4){
         if(argv[3]=="8"){
@@ -68,6 +72,10 @@ double main(int argc, char* argv[]){
         matrizResultante = geraMatriz();
 
         if(strcmp(argv[1], "-s")== 0){
+<<<<<<< HEAD
+=======
+
+>>>>>>> 005f07cd049a1774826413f762f57554a38d75d7
             //Marca o tempo inicial
             inicio = time(NULL);
 
