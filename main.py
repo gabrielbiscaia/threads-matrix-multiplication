@@ -33,9 +33,9 @@ def compilar_e_rodar(arquivo_c, algoritmo, tamanho, qtdExecucoes, qtdThreads):
             temposExec.append(float(retorno))
             
     mediaTempoExecucao /= qtdExecucoes
-    print("Media do tempo de execução: ",mediaTempoExecucao,"s")
+    print("Media do tempo de execução: "+mediaTempoExecucao+"s")
 
-    return temposExec
+    return mediaTempoExecucao
 
     # # Dados para o eixo x e y
     # x = [1, 2, 3, 4, 5]
@@ -55,16 +55,19 @@ qtdThreads = input("Digite a quantidade de threads do seu computador: ")
 choice= input("Deseja (1) ver o grafico de speedup ou (2) rodar individualmente um algoritmo?")
 if choice == 1:
     threads = [1,2,4,8]
+    mediaParaleloTam1=[]
 
-    sequencialTam1=compilar_e_rodar(arquivo, "1", "TAM_1", 3, 1)
+    mediaSequencialTam1=compilar_e_rodar(arquivo, "1", "TAM_1", 1, 1)
 
-    pareleloTam1=compilar_e_rodar(arquivo, "2", "TAM_1", 3, 2)
+    mediaParaleloTam1.append(compilar_e_rodar(arquivo, "2", "TAM_1", 1, 1))
 
-    pareleloTam2=compilar_e_rodar(arquivo, "2", "TAM_1", 3, 4)
+    mediaParaleloTam1.append(compilar_e_rodar(arquivo, "2", "TAM_1", 1, 2))
 
-    pareleloTam3=compilar_e_rodar(arquivo, "2", "TAM_1", 3, 8)
+    mediaParaleloTam1.append(compilar_e_rodar(arquivo, "2", "TAM_1", 1, 4))
 
-    speedup = [sequencialTam1[0] / pareleloTam1[i] for i in range(len(pareleloTam1))]
+    mediaParaleloTam1.append(compilar_e_rodar(arquivo, "2", "TAM_1", 1, 8))
+
+    speedup = [mediaSequencialTam1[0] / mediaParaleloTam1[i] for i in range(len(mediaParaleloTam1))]
 
     # Plotando o gráfico
     plt.plot(threads, speedup, 'bo-')  # 'bo-' representa pontos azuis interconectados (blue circles)
@@ -75,24 +78,25 @@ if choice == 1:
     plt.show()
 
 
-    sequencialTam1=compilar_e_rodar(arquivo, "1", "TAM_2", 3, 1)
 
-    pareleloTam1=compilar_e_rodar(arquivo, "2", "TAM_2", 3, 2)
+    # sequencialTam1=compilar_e_rodar(arquivo, "1", "TAM_2", 3, 1)
 
-    pareleloTam2=compilar_e_rodar(arquivo, "2", "TAM_2", 3, 4)
+    # pareleloTam1=compilar_e_rodar(arquivo, "2", "TAM_2", 3, 2)
+
+    # pareleloTam2=compilar_e_rodar(arquivo, "2", "TAM_2", 3, 4)
     
-    pareleloTam3=compilar_e_rodar(arquivo, "2", "TAM_2", 3, 8)
+    # pareleloTam3=compilar_e_rodar(arquivo, "2", "TAM_2", 3, 8)
 
 
 
 
-    sequencialTam1=compilar_e_rodar(arquivo, "1", "TAM_3", 3, 1)
+    # sequencialTam1=compilar_e_rodar(arquivo, "1", "TAM_3", 3, 1)
 
-    pareleloTam1=compilar_e_rodar(arquivo, "2", "TAM_3", 3, 2)
+    # pareleloTam1=compilar_e_rodar(arquivo, "2", "TAM_3", 3, 2)
 
-    pareleloTam2=compilar_e_rodar(arquivo, "2", "TAM_3", 3, 4)
+    # pareleloTam2=compilar_e_rodar(arquivo, "2", "TAM_3", 3, 4)
     
-    pareleloTam3=compilar_e_rodar(arquivo, "2", "TAM_3", 3, 8)
+    # pareleloTam3=compilar_e_rodar(arquivo, "2", "TAM_3", 3, 8)
     
 
 
