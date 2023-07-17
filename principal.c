@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <string.h>
+#include <time.h>
 //importação dos outros arquivos
 #include "util.c"
 #include "sequencial.c"
@@ -22,14 +23,14 @@ float ** matrizResultante;
 int tamanho;
 int qtdThreads;
 //variaveis para calcular tempo
-clock_t inicio, fim;
+time_t fim, inicio;
 double tempoFinal;
 
 pthread_mutex_t mutex;
 
 int main(int argc, char* argv[]){
-    qtdThreads=THREADS_GABRIEL;
-    
+    qtdThreads=THREADS_PEDRO;
+    tempoFinal=0.0;
     if(argc==3){
         if (strcmp(argv[2], "TAM_1") == 0) {
             tamanho = TAM_1;
@@ -56,48 +57,47 @@ int main(int argc, char* argv[]){
             //Sequencial
 
             //Marca o tempo inicial
-            inicio = clock();
+            inicio = time(NULL);
 
-            multiplicaSequencial();   
+            multiplicaSequencial(); 
+
+            // Marca o tempo final
+            fim = time(NULL);  
         }
         else if(strcmp(argv[1], "-p")== 0){
             //Paralelo
 
             //Marca o tempo inicial
-            inicio = clock();
+            inicio = time(NULL);
 
-            pthread_t threads[THREADS_GABRIEL];
-            int idsThreads[THREADS_GABRIEL];
+            pthread_t threads[qtdThreads];
+            int idsThreads[qtdThreads];
 
             pthread_mutex_init(&mutex, NULL);
 
-            for(int i=0; i<THREADS_GABRIEL; i++){
+            for(int i=0; i<qtdThreads; i++){
                 idsThreads[i]=i;
                 pthread_create(&threads[i], NULL, multiplicaParalelo, &idsThreads[i]);
             }
 
-            for(int i=0; i<THREADS_GABRIEL; i++){
+            for(int i=0; i<qtdThreads; i++){
                 pthread_join(threads[i],NULL);
             }
-
-            
+  
 
             pthread_mutex_destroy(&mutex);
             //imprimirMatriz(tamanho, tamanho);
+            // Marca o tempo final
+            fim = time(NULL);
         }
-
+        
+        // Calcula o tempo de CPU utilizado em segundos
+ 
         liberarMemoria();
+       tempoFinal = fim-inicio;
+        printf("\nO tempo de execução do programa foi de: %.2fs\n", tempoFinal);
     }
 
-    // Marca o tempo final
-    fim = clock(); 
-
-    // Calcula o tempo de CPU utilizado em segundos
-    tempoFinal = ((double) (fim - inicio)) / CLOCKS_PER_SEC;
-
-
-    printf("\nTempo inicial: %ld\nTempo final: %ld", inicio, fim);
-    printf("\nO tempo de execução do programa foi de: %f\n", tempoFinal);
-
     return 0;
+    
 }
