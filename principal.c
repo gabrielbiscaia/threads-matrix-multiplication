@@ -53,11 +53,21 @@ int main(int argc, char* argv[]){
 
 
         if(strcmp(argv[1], "-s")== 0){
-            //sequencial
-            multiplicaSequencial();      
+            //Sequencial
+
+            //Marca o tempo inicial
+            inicio = clock();
+
+            multiplicaSequencial();   
+
+            // Marca o tempo final
+            fim = clock();   
         }
         else if(strcmp(argv[1], "-p")== 0){
-            //paralelo
+            //Paralelo
+
+            //Marca o tempo inicial
+            inicio = clock();
 
             pthread_t threads[THREADS_GABRIEL];
             int idsThreads[THREADS_GABRIEL];
@@ -72,6 +82,9 @@ int main(int argc, char* argv[]){
             for(int i=0; i<THREADS_GABRIEL; i++){
                 pthread_join(threads[i],NULL);
             }
+
+            // Marca o tempo final
+            fim = clock(); 
 
             pthread_mutex_destroy(&mutex);
             //imprimirMatriz(tamanho, tamanho);
