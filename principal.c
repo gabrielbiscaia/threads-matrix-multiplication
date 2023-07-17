@@ -9,7 +9,7 @@
 #include "sequencial.c"
 #include "paralelo.c"
 //Quantidade de threads de cada aluno
-#define THREADS_ARTHUR 4
+#define THREADS_ARTHUR 2
 #define THREADS_GABRIEL 8
 #define THREADS_PEDRO 4
 //Tamanho das matrizes
@@ -28,10 +28,24 @@ double tempoFinal;
 
 pthread_mutex_t mutex;
 
-int main(int argc, char* argv[]){
-    qtdThreads=THREADS_GABRIEL;
+double main(int argc, char* argv[]){
+    
+    
     tempoFinal=0.0;
-    if(argc==3){
+    if(argc==4){
+        if(argv[3]=="8"){
+            qtdThreads=THREADS_GABRIEL;
+        }
+        else if(argv[3]=="4"){
+            qtdThreads=THREADS_PEDRO;
+        }
+        else if(argv[3]=="2"){
+            qtdThreads=THREADS_ARTHUR;
+        }
+        else if(argv[3]=="1"){
+            qtdThreads=1;
+        }
+                    
         if (strcmp(argv[2], "TAM_1") == 0) {
             tamanho = TAM_1;
         } else if (strcmp(argv[2], "TAM_2") == 0) {
@@ -41,6 +55,8 @@ int main(int argc, char* argv[]){
         } else {
             tamanho = 0;
         }
+
+
         
         //Inicia a semente do gerador de numeros aleatórios com o tempo atual.
         srand(time(0));
@@ -51,12 +67,7 @@ int main(int argc, char* argv[]){
         povoarMatriz(matriz2);
         matrizResultante = geraMatriz();
 
-        printf("=============================================");
-        printf("\nTamanho da matriz = %d", tamanho);
-
         if(strcmp(argv[1], "-s")== 0){
-
-            printf("\nModo = Sequencial");
             //Marca o tempo inicial
             inicio = time(NULL);
 
@@ -66,8 +77,6 @@ int main(int argc, char* argv[]){
             fim = time(NULL);  
         }
         else if(strcmp(argv[1], "-p")== 0){
-
-            printf("\nModo = Paralelo");
             //Marca o tempo inicial
             inicio = time(NULL);
 
@@ -96,11 +105,8 @@ int main(int argc, char* argv[]){
  
         liberarMemoria();
         tempoFinal = fim-inicio;
-        printf("\nO tempo de execução do programa foi de: %.2fs", tempoFinal);
-        printf("\n=============================================\n");
-
     }
 
-    return 0;
+    return tempoFinal;
 
 }
