@@ -53,7 +53,7 @@ arquivo = 'principal.c'
 
 qtdThreads = input("Digite a quantidade de threads do seu computador: ")
 choice= input("Deseja (1) ver o grafico de speedup ou (2) rodar individualmente um algoritmo?")
-if choice == 1:
+if choice == "1":
     threads = [1,2,4,8]
     mediaParaleloTam1=[]
 
@@ -68,6 +68,9 @@ if choice == 1:
     mediaParaleloTam1.append(compilar_e_rodar(arquivo, "2", "TAM_1", 1, 8))
 
     speedup = [mediaSequencialTam1[0] / mediaParaleloTam1[i] for i in range(len(mediaParaleloTam1))]
+
+    print(speedup)
+
 
     # Plotando o gráfico
     plt.plot(threads, speedup, 'bo-')  # 'bo-' representa pontos azuis interconectados (blue circles)
@@ -97,10 +100,7 @@ if choice == 1:
     # pareleloTam2=compilar_e_rodar(arquivo, "2", "TAM_3", 3, 4)
     
     # pareleloTam3=compilar_e_rodar(arquivo, "2", "TAM_3", 3, 8)
-    
-
-
-elif choice == 2:
+elif choice =="2":
     algoritmo = input("Escolha o algortimo para ser utilizado:\n(1) para Sequencial\n(2) para Paralelo\n")
     tamanho= input("Qual tamanho da matriz?\n(1) Tamanho = 1000\n(2) Tamanho  = 2000\n(3) Tamanho = 4000\n")
     qtdExecucoes = input("Deseja rodar o codigo quantas vezes?\n")
