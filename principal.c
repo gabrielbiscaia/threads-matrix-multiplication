@@ -59,9 +59,6 @@ int main(int argc, char* argv[]){
             inicio = clock();
 
             multiplicaSequencial();   
-
-            // Marca o tempo final
-            fim = clock();   
         }
         else if(strcmp(argv[1], "-p")== 0){
             //Paralelo
@@ -83,8 +80,7 @@ int main(int argc, char* argv[]){
                 pthread_join(threads[i],NULL);
             }
 
-            // Marca o tempo final
-            fim = clock(); 
+            
 
             pthread_mutex_destroy(&mutex);
             //imprimirMatriz(tamanho, tamanho);
@@ -92,6 +88,9 @@ int main(int argc, char* argv[]){
 
         liberarMemoria();
     }
+
+    // Marca o tempo final
+    fim = clock(); 
 
     // Calcula o tempo de CPU utilizado em segundos
     tempoFinal = ((double) (fim - inicio)) / CLOCKS_PER_SEC;
