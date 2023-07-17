@@ -33,16 +33,16 @@ double main(int argc, char* argv[]){
     
     tempoFinal=0.0;
     if(argc==4){
-        if(argv[3]=="8"){
+        if(strcmp(argv[3],"8")){
             qtdThreads=THREADS_GABRIEL;
         }
-        else if(argv[3]=="4"){
+        else if(strcmp(argv[3],"4")){
             qtdThreads=THREADS_PEDRO;
         }
-        else if(argv[3]=="2"){
+        else if(strcmp(argv[3],"2")){
             qtdThreads=THREADS_ARTHUR;
         }
-        else if(argv[3]=="1"){
+        else if(strcmp(argv[3],"1")){
             qtdThreads=1;
         }
                     
