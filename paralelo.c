@@ -7,13 +7,8 @@ extern float ** matrizResultante;
 extern int tamanho;
 extern int qtdThreads;
 extern pthread_mutex_t mutex;
-extern clock_t inicio, fim;
-
 
 void *multiplicaParalelo(void *arg){
-
-    // Marca o tempo inicial
-    inicio = clock();
 
     int idThread = *((int*)arg);
     int inicio= (idThread * tamanho)/ qtdThreads;
@@ -32,9 +27,5 @@ void *multiplicaParalelo(void *arg){
             pthread_mutex_unlock(&mutex);
         }
     }
-
-    // Marca o tempo final
-    fim = clock();
-
     pthread_exit(NULL);
 }

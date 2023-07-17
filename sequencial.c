@@ -6,12 +6,8 @@ extern float ** matriz1;
 extern float ** matriz2;
 extern float ** matrizResultante;
 extern int tamanho;
-extern clock_t inicio, fim;
 
 void multiplicaSequencial(void){
-
-    // Marca o tempo inicial
-    inicio = clock();
 
     for(int i=0; i<tamanho; i++){
         for(int j=0; j<tamanho; j++){
@@ -20,8 +16,5 @@ void multiplicaSequencial(void){
             }
         }
     }
-
-    // Marca o tempo final
-    fim = clock();
 
 }
