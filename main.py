@@ -36,7 +36,7 @@ def compilar_e_rodar(arquivo_c, algoritmo, tamanho, qtdExecucoes, qtdThreads):
     mediaTempoExecucao /= qtdExecucoes
     print("Media do tempo de execução: ", mediaTempoExecucao, "s")
 
-    return mediaTempoExecucao
+    return temposExec
 
     # # Dados para o eixo x e y
     # x = [1, 2, 3, 4, 5]
@@ -58,8 +58,6 @@ choice = input(
     "Deseja (1) ver o grafico de speedup ou (2) rodar individualmente um algoritmo?\n")
 if choice == "1":
     threads = [1, 2, 4, 8]
-    mediaParaleloTam1 = []
-
 
     tempoSequencial1000 = compilar_e_rodar(arquivo, "1", "TAM_1", 1, "1")
     
@@ -68,7 +66,7 @@ if choice == "1":
     tempoParalelo1000 = compilar_e_rodar(arquivo, "2", "TAM_1", 1, "4")
     tempoParalelo1000 = compilar_e_rodar(arquivo, "2", "TAM_1", 1, "8")
 
-    speedup1000= [tempoSequencial1000/tempoParalelo1000[i] for i in range(len(threads))]
+    speedup1000= [tempoSequencial1000[0]/tempoParalelo1000[i] for i in range(len(threads))]
 
     print(speedup1000)
 
@@ -79,7 +77,7 @@ if choice == "1":
     tempoParalelo2000 = compilar_e_rodar(arquivo, "2", "TAM_1", 1, "4")
     tempoParalelo2000 = compilar_e_rodar(arquivo, "2", "TAM_1", 1, "8")
 
-    speedup2000= [tempoSequencial2000/tempoParalelo2000[i] for i in range(len(threads))]
+    speedup2000= [tempoSequencial2000[0]/tempoParalelo2000[i] for i in range(len(threads))]
 
     print(speedup2000)
 
@@ -90,7 +88,7 @@ if choice == "1":
     tempoParalelo4000 = compilar_e_rodar(arquivo, "2", "TAM_1", 1, "4")
     tempoParalelo4000 = compilar_e_rodar(arquivo, "2", "TAM_1", 1, "8")
 
-    speedup4000= [tempoSequencial4000/tempoParalelo4000[i] for i in range(len(threads))]
+    speedup4000= [tempoSequencial4000[0]/tempoParalelo4000[i] for i in range(len(threads))]
 
     print(speedup4000)
 
