@@ -8,7 +8,7 @@
 
 #define THREADS_GABRIEL 8
 #define THREADS_PEDRO 4
-#define THREADS_ARTHUR 6
+#define THREADS_ARTHUR 4
 
 #define TAM_1 2000
 #define TAM_2 4000
