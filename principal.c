@@ -28,7 +28,7 @@ double tempoFinal;
 
 pthread_mutex_t mutex;
 
-int main(int argc, char* argv[]){
+double main(int argc, char* argv[]){
     qtdThreads=THREADS_GABRIEL;
     tempoFinal=0.0;
     if(argc==3){
@@ -51,12 +51,8 @@ int main(int argc, char* argv[]){
         povoarMatriz(matriz2);
         matrizResultante = geraMatriz();
 
-        printf("=============================================");
-        printf("\nTamanho da matriz = %d", tamanho);
-
         if(strcmp(argv[1], "-s")== 0){
 
-            printf("\nModo = Sequencial");
             //Marca o tempo inicial
             inicio = time(NULL);
 
@@ -66,8 +62,6 @@ int main(int argc, char* argv[]){
             fim = time(NULL);  
         }
         else if(strcmp(argv[1], "-p")== 0){
-
-            printf("\nModo = Paralelo");
             //Marca o tempo inicial
             inicio = time(NULL);
 
@@ -96,11 +90,8 @@ int main(int argc, char* argv[]){
  
         liberarMemoria();
         tempoFinal = fim-inicio;
-        printf("\nO tempo de execução do programa foi de: %.2fs", tempoFinal);
-        printf("\n=============================================\n");
-
     }
 
-    return 0;
+    return tempoFinal;
 
 }
