@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <string.h>
-#include <time.h>
+#include <sys/time.h>
 // importação dos outros arquivos
 #include "util.c"
 #include "sequencial.c"
@@ -23,13 +23,27 @@ float **matrizResultante;
 int tamanho;
 int qtdThreads;
 // variaveis para calcular tempo
-time_t fim, inicio;
+struct timeval tempoInicial, tempoFinal;
+double tempo_execucao;
 double tempoFinal;
 
 pthread_mutex_t mutex;
 
 double main(int argc, char *argv[])
 {
+    
+    
+
+
+
+    // Código a ser medido
+    // Coloque aqui o código que você deseja medir o tempo de execução
+
+
+
+
+
+
 
     tempoFinal = 0.0;
     if (argc == 4)
@@ -79,18 +93,16 @@ double main(int argc, char *argv[])
 
         if (strcmp(argv[1], "-s") == 0)
         {
-            // Marca o tempo inicial
-            inicio = time(NULL);
+            // Obter o tempo inicial
+            gettimeofday(&tempoInicial, NULL);
 
             multiplicaSequencial();
-
-            // Marca o tempo final
-            fim = time(NULL);
+            gettimeofday(&tempo_final, NULL);
         }
         else if (strcmp(argv[1], "-p") == 0)
         {
-            // Marca o tempo inicial
-            inicio = time(NULL);
+            // Obter o tempo inicial
+            gettimeofday(&tempoInicial, NULL);
 
             pthread_t threads[qtdThreads];
             int idsThreads[qtdThreads];
@@ -110,15 +122,18 @@ double main(int argc, char *argv[])
 
             pthread_mutex_destroy(&mutex);
             // imprimirMatriz(tamanho, tamanho);
-            //  Marca o tempo final
-            fim = time(NULL);
+
+            gettimeofday(&tempo_final, NULL);
+
         }
 
         // Calcula o tempo de CPU utilizado em segundos
 
         liberarMemoria();
-        tempoFinal = fim - inicio;
+
     }
+    // Calcular a diferença de tempo em segundos
+    tempoFinal = (double)(tempo_final.tv_sec - tempo_inicial.tv_sec) + (double)(tempo_final.tv_usec - tempo_inicial.tv_usec) / 1000000;
 
     printf("%lf", tempoFinal);
     return tempoFinal;
