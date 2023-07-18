@@ -25,7 +25,7 @@ int qtdThreads;
 // variaveis para calcular tempo
 struct timeval tempoInicial, tempoFinal;
 double tempo_execucao;
-double tempoFinal;
+
 
 pthread_mutex_t mutex;
 
@@ -133,7 +133,7 @@ double main(int argc, char *argv[])
 
     }
     // Calcular a diferença de tempo em segundos
-    tempoFinal = (double)(tempoFinal.tv_sec - tempoInicial.tv_sec) + (double)(tempoFinal.tv_usec - tempoInicial.tv_usec) / 1000000;
+    tempo_execucao = (double)(tempoFinal.tv_sec - tempoInicial.tv_sec) + (double)(tempoFinal.tv_usec - tempoInicial.tv_usec) / 1000000;
 
     printf("%lf", tempoFinal);
     return tempoFinal;
