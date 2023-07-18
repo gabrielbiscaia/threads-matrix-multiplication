@@ -31,21 +31,8 @@ pthread_mutex_t mutex;
 
 double main(int argc, char *argv[])
 {
-    
-    
+    tempo_execucao =0.0;
 
-
-
-    // Código a ser medido
-    // Coloque aqui o código que você deseja medir o tempo de execução
-
-
-
-
-
-
-
-    tempoFinal = 0.0;
     if (argc == 4)
     {
         if (strcmp(argv[3], "8"))
@@ -135,6 +122,6 @@ double main(int argc, char *argv[])
     // Calcular a diferença de tempo em segundos
     tempo_execucao = (double)(tempoFinal.tv_sec - tempoInicial.tv_sec) + (double)(tempoFinal.tv_usec - tempoInicial.tv_usec) / 1000000;
 
-    printf("%lf", tempoFinal);
-    return tempoFinal;
+    printf("%lf", tempo_execucao);
+    return tempo_execucao;
 }
