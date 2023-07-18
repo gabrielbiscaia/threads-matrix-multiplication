@@ -50,12 +50,12 @@ if choice == "1":
     threads = [1, 2, 4, 8]
 
     tempoParalelo1000 = []
-    tempoSequencial1000 = compilar_e_rodar(arquivo, "1", "TAM_1", 1, "1")
+    tempoSequencial1000 = compilar_e_rodar(arquivo, "1", "TAM_1", 10, "1")
 
     tempoParalelo1000.append(tempoSequencial1000)
-    tempoParalelo1000.append(compilar_e_rodar(arquivo, "2", "TAM_1", 1, "2"))
-    tempoParalelo1000.append(compilar_e_rodar(arquivo, "2", "TAM_1", 1, "4"))
-    tempoParalelo1000.append(compilar_e_rodar(arquivo, "2", "TAM_1", 1, "8"))
+    tempoParalelo1000.append(compilar_e_rodar(arquivo, "2", "TAM_1", 10, "2"))
+    tempoParalelo1000.append(compilar_e_rodar(arquivo, "2", "TAM_1", 10, "4"))
+    tempoParalelo1000.append(compilar_e_rodar(arquivo, "2", "TAM_1", 10, "8"))
 
     speedup1000 = [tempoSequencial1000/tempoParalelo1000[i]
                    for i in range(len(threads))]
@@ -64,12 +64,12 @@ if choice == "1":
 
     tempoParalelo2000 = []
 
-    tempoSequencial2000 = compilar_e_rodar(arquivo, "1", "TAM_2", 1, "1")
+    tempoSequencial2000 = compilar_e_rodar(arquivo, "1", "TAM_2", 10, "1")
 
     tempoParalelo2000.append(tempoSequencial2000)
-    tempoParalelo2000.append(compilar_e_rodar(arquivo, "2", "TAM_2", 1, "2"))
-    tempoParalelo2000.append(compilar_e_rodar(arquivo, "2", "TAM_2", 1, "4"))
-    tempoParalelo2000.append(compilar_e_rodar(arquivo, "2", "TAM_2", 1, "8"))
+    tempoParalelo2000.append(compilar_e_rodar(arquivo, "2", "TAM_2", 10, "2"))
+    tempoParalelo2000.append(compilar_e_rodar(arquivo, "2", "TAM_2", 10, "4"))
+    tempoParalelo2000.append(compilar_e_rodar(arquivo, "2", "TAM_2", 10, "8"))
 
     speedup2000 = [tempoSequencial2000/tempoParalelo2000[i]
                    for i in range(len(threads))]
@@ -78,13 +78,13 @@ if choice == "1":
 
     tempoParalelo4000 = []
 
-    tempoSequencial4000 = compilar_e_rodar(arquivo, "1", "TAM_3", 1, "1")
+    tempoSequencial4000 = compilar_e_rodar(arquivo, "1", "TAM_3", 10, "1")
 
     tempoParalelo4000.append(tempoSequencial4000)
 
-    tempoParalelo4000.append(compilar_e_rodar(arquivo, "2", "TAM_3", 1, "2"))
-    tempoParalelo4000.append(compilar_e_rodar(arquivo, "2", "TAM_3", 1, "4"))
-    tempoParalelo4000.append(compilar_e_rodar(arquivo, "2", "TAM_3", 1, "8"))
+    tempoParalelo4000.append(compilar_e_rodar(arquivo, "2", "TAM_3", 10, "2"))
+    tempoParalelo4000.append(compilar_e_rodar(arquivo, "2", "TAM_3", 10, "4"))
+    tempoParalelo4000.append(compilar_e_rodar(arquivo, "2", "TAM_3", 10, "8"))
 
     speedup4000 = [tempoSequencial4000/tempoParalelo4000[i]
                    for i in range(len(threads))]
@@ -95,32 +95,29 @@ if choice == "1":
 
     linear = [i for i in threads]
 
-    ax1.plot(threads, speedup1000, c='red', label="SpeedUp Paralelo PC-1")
+    ax1.plot(threads, speedup1000, c='red', label="SpeedUp Paralelo")
 
-    ax2.plot(threads, speedup2000, c='red', label="SpeedUp Paralelo PC-1")
+    ax2.plot(threads, speedup2000, c='red', label="SpeedUp Paralelo")
 
-    ax3.plot(threads, speedup4000, c='red', label="SpeedUp Paralelo PC-1")
+    ax3.plot(threads, speedup4000, c='red', label="SpeedUp Paralelo")
 
-    ax1.plot(threads, linear, c='green', label="Crescimento Linear")
+    ax1.plot(threads, linear, c='green', label="Linear")
     ax1.grid(True)
 
-    ax2.plot(threads, linear, c='green', label="Crescimento Linear")
+    ax2.plot(threads, linear, c='green', label="Linear")
     ax2.grid(True)
 
-    ax3.plot(threads, linear, c='green', label="Crescimento Linear")
+    ax3.plot(threads, linear, c='green', label="Linear")
     ax3.grid(True)
 
-    # ax1.set_xlabel("Threads")
-    # ax1.set_ylabel("SpeedUp")
-    ax1.set_title("Matrix: 1000x1000")
-    # plt.suptitle("Tamanho da matrix: 1000x1000")
 
-    # ax2.set_xlabel("Threads")
+    ax1.set_title("Matrix: 1000x1000")
+
     ax2.set_ylabel("SpeedUp")
     ax2.set_title("Matrix: 2000x2000")
 
     ax3.set_xlabel("Threads")
-    # ax3.set_ylabel("SpeedUp")
+
     ax3.set_title("Matrix: 4000x4000")
     fig.tight_layout()
 
