@@ -111,14 +111,14 @@ if choice == "1":
     ax3.grid(True)
 
 
-    ax1.set_title("Matrix: 1000x1000")
+    ax1.set_title("Matriz 1000x1000")
 
     ax2.set_ylabel("SpeedUp")
-    ax2.set_title("Matrix: 2000x2000")
+    ax2.set_title("Matriz 2000x2000")
 
     ax3.set_xlabel("Threads")
 
-    ax3.set_title("Matrix: 4000x4000")
+    ax3.set_title("Matriz 4000x4000")
     fig.tight_layout()
 
     plt.show()
