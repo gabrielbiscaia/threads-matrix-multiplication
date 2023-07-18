@@ -26,12 +26,11 @@ int qtdThreads;
 struct timeval tempoInicial, tempoFinal;
 double tempo_execucao;
 
-
-pthread_mutex_t mutex;
+// pthread_mutex_t mutex;
 
 double main(int argc, char *argv[])
 {
-    tempo_execucao =0.0;
+    tempo_execucao = 0.0;
 
     if (argc == 4)
     {
@@ -94,7 +93,7 @@ double main(int argc, char *argv[])
             pthread_t threads[qtdThreads];
             int idsThreads[qtdThreads];
 
-            pthread_mutex_init(&mutex, NULL);
+            // pthread_mutex_init(&mutex, NULL);
 
             for (int i = 0; i < qtdThreads; i++)
             {
@@ -107,17 +106,15 @@ double main(int argc, char *argv[])
                 pthread_join(threads[i], NULL);
             }
 
-            pthread_mutex_destroy(&mutex);
-            // imprimirMatriz(tamanho, tamanho);
+            // pthread_mutex_destroy(&mutex);
+            //  imprimirMatriz(tamanho, tamanho);
 
             gettimeofday(&tempoFinal, NULL);
-
         }
 
         // Calcula o tempo de CPU utilizado em segundos
 
         liberarMemoria();
-
     }
     // Calcular a diferença de tempo em segundos
     tempo_execucao = (double)(tempoFinal.tv_sec - tempoInicial.tv_sec) + (double)(tempoFinal.tv_usec - tempoInicial.tv_usec) / 1000000;

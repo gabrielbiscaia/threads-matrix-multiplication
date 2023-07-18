@@ -39,6 +39,7 @@ def compilar_e_rodar(arquivo_c, algoritmo, tamanho, qtdExecucoes, qtdThreads):
 
     return mediaTempoExecucao
 
+
 # arquivo C
 arquivo = 'principal.c'
 
@@ -48,65 +49,57 @@ choice = input(
 if choice == "1":
     threads = [1, 2, 4, 8]
 
-    tempoParalelo1000=[]
+    tempoParalelo1000 = []
     tempoSequencial1000 = compilar_e_rodar(arquivo, "1", "TAM_1", 1, "1")
-    
+
     tempoParalelo1000.append(compilar_e_rodar(arquivo, "2", "TAM_1", 1, "2"))
     tempoParalelo1000.append(compilar_e_rodar(arquivo, "2", "TAM_1", 1, "4"))
     tempoParalelo1000.append(compilar_e_rodar(arquivo, "2", "TAM_1", 1, "8"))
 
-    speedup1000= [tempoSequencial1000/tempoParalelo1000[i] for i in range(len(threads))]
+    speedup1000 = [tempoSequencial1000/tempoParalelo1000[i]
+                   for i in range(len(threads)-1)]
 
     print(speedup1000)
 
-
-    tempoParalelo2000=[]
+    tempoParalelo2000 = []
 
     tempoSequencial2000 = compilar_e_rodar(arquivo, "1", "TAM_2", 1, "1")
-    
+
     tempoParalelo2000.append(compilar_e_rodar(arquivo, "2", "TAM_2", 1, "2"))
     tempoParalelo2000.append(compilar_e_rodar(arquivo, "2", "TAM_2", 1, "4"))
     tempoParalelo2000.append(compilar_e_rodar(arquivo, "2", "TAM_2", 1, "8"))
 
-    speedup2000= [tempoSequencial2000/tempoParalelo2000[i] for i in range(len(threads))]
+    speedup2000 = [tempoSequencial2000/tempoParalelo2000[i]
+                   for i in range(len(threads)-1)]
 
     print(speedup2000)
 
-    tempoParalelo4000=[]
+    tempoParalelo4000 = []
 
     tempoSequencial4000 = compilar_e_rodar(arquivo, "1", "TAM_3", 1, "1")
-    
+
     tempoParalelo4000.append(compilar_e_rodar(arquivo, "2", "TAM_3", 1, "2"))
     tempoParalelo4000.append(compilar_e_rodar(arquivo, "2", "TAM_3", 1, "4"))
     tempoParalelo4000.append(compilar_e_rodar(arquivo, "2", "TAM_3", 1, "8"))
 
-    speedup4000= [tempoSequencial4000/tempoParalelo4000[i] for i in range(len(threads))]
+    speedup4000 = [tempoSequencial4000/tempoParalelo4000[i]
+                   for i in range(len(threads)-1)]
 
     print(speedup4000)
 
-
-
     fig, (ax1, ax2, ax3) = plt.subplots(3, sharex=True)
-
-
-
-
 
     linear = [i for i in threads]
 
-    # cores: 
+    # cores:
     # chata->vermelho
     # molina->amarelo
     # badas->rosa
     ax1.plot(threads, speedup1000, c='red', label="SpeedUp Paralelo PC-1")
 
-
     ax2.plot(threads, speedup2000, c='red', label="SpeedUp Paralelo PC-1")
 
-
     ax3.plot(threads, speedup4000, c='red', label="SpeedUp Paralelo PC-1")
-
-
 
     ax1.plot(threads, linear, c='green', label="Crescimento Linear")
     ax1.grid(True)
@@ -117,19 +110,17 @@ if choice == "1":
     ax3.plot(threads, linear, c='green', label="Crescimento Linear")
     ax3.grid(True)
 
-
-    #ax1.set_xlabel("Threads")
-    #ax1.set_ylabel("SpeedUp")
+    # ax1.set_xlabel("Threads")
+    # ax1.set_ylabel("SpeedUp")
     ax1.set_title("Matrix: 1000x1000")
     # plt.suptitle("Tamanho da matrix: 1000x1000")
 
-    #ax2.set_xlabel("Threads")
+    # ax2.set_xlabel("Threads")
     ax2.set_ylabel("SpeedUp")
     ax2.set_title("Matrix: 2000x2000")
 
-
     ax3.set_xlabel("Threads")
-    #ax3.set_ylabel("SpeedUp")
+    # ax3.set_ylabel("SpeedUp")
     ax3.set_title("Matrix: 4000x4000")
     fig.tight_layout()
 
