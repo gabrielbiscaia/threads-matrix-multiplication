@@ -97,7 +97,7 @@ double main(int argc, char *argv[])
             gettimeofday(&tempoInicial, NULL);
 
             multiplicaSequencial();
-            gettimeofday(&tempo_final, NULL);
+            gettimeofday(&tempoFinal, NULL);
         }
         else if (strcmp(argv[1], "-p") == 0)
         {
@@ -123,7 +123,7 @@ double main(int argc, char *argv[])
             pthread_mutex_destroy(&mutex);
             // imprimirMatriz(tamanho, tamanho);
 
-            gettimeofday(&tempo_final, NULL);
+            gettimeofday(&tempoFinal, NULL);
 
         }
 
@@ -133,7 +133,7 @@ double main(int argc, char *argv[])
 
     }
     // Calcular a diferença de tempo em segundos
-    tempoFinal = (double)(tempo_final.tv_sec - tempo_inicial.tv_sec) + (double)(tempo_final.tv_usec - tempo_inicial.tv_usec) / 1000000;
+    tempoFinal = (double)(tempoFinal.tv_sec - tempoInicial.tv_sec) + (double)(tempoFinal.tv_usec - tempoInicial.tv_usec) / 1000000;
 
     printf("%lf", tempoFinal);
     return tempoFinal;
