@@ -35,6 +35,7 @@ def compilar_e_rodar(arquivo_c, algoritmo, tamanho, qtdExecucoes, qtdThreads):
 
     mediaTempoExecucao /= qtdExecucoes
     print("Media do tempo de execução: ", mediaTempoExecucao, "s")
+    print(temposExec)
 
     return mediaTempoExecucao
 
